@@ -11,31 +11,23 @@ body {
   text-align: center;
 }
 
-#role-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-#role-buttons button.active {
-  background: #1e90ff;
-  font-weight: bold;
-}
-
-#role-buttons button {
-  background: #333;
-  color: white;
-  border: none;
-  padding: 10px 14px;
+button {
+  font-size: 16px;
+  padding: 10px 16px;
+  margin: 6px 5px;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
+  background-color: #1e1e1e;
+  color: white;
+  transition: 0.2s;
 }
-#role-buttons button:hover {
-  background: #555;
+button:hover {
+  background-color: #444;
+}
+button.active {
+  background-color: #007bff;
+  color: white;
 }
 
 #hero-img {
@@ -43,35 +35,33 @@ body {
   height: 200px;
   border-radius: 16px;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin: 16px 0;
   box-shadow: 0 0 20px #000;
   opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 #hero-img.show {
   opacity: 1;
-  transform: scale(1);
 }
 
 #hero-name {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 10px 0 5px;
   text-shadow: 2px 2px 4px #000;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 #hero-name.show {
   opacity: 1;
 }
 
 #hero-role {
-  font-size: 20px;
+  font-size: 18px;
   color: #ccc;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 #hero-role.show {
   opacity: 1;
@@ -79,20 +69,13 @@ body {
 
 #spin-btn {
   background: #1e90ff;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 #spin-btn:hover {
   background: #0078d7;
 }
 
 #loading-text {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   margin: 20px;
   display: none;
@@ -101,5 +84,12 @@ body {
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+  50% { opacity: 0.3; }
+}
+
+#role-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
 }

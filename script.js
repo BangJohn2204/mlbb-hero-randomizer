@@ -1,34 +1,42 @@
+const heroImage = document.getElementById("hero-image");
+const heroName = document.getElementById("hero-name");
+const spinBtn = document.getElementById("spin-button");
+const roleFilter = document.getElementById("role-filter");
 
-const imageEl = document.getElementById("hero-image");
-const nameEl = document.getElementById("hero-name");
-const button = document.getElementById("spin-button");
-const roleSelect = document.getElementById("role-filter");
+let heroes = [];
+
+fetch("hero_mlbb_with_images_cleaned.json")
+  .then(res => res.json())
+  .then(data => {
+    heroes = data;
+  });
 
 function getFilteredHeroes(role) {
   if (role === "All") return heroes;
-  return heroes.filter(h => Array.isArray(h.role) ? h.role.includes(role) : h.role === role);
+  return heroes.filter(hero => hero.role.includes(role));
 }
 
-button.addEventListener("click", () => {
-  const selectedRole = roleSelect.value;
+spinBtn.addEventListener("click", () => {
+  const selectedRole = roleFilter.value;
   const filtered = getFilteredHeroes(selectedRole);
+
   if (filtered.length === 0) {
-    alert("No hero found for this role!");
+    alert("Tidak ada hero dengan role tersebut.");
     return;
   }
 
   let index = 0;
-  let totalSpins = 25 + Math.floor(Math.random() * 10);
-  let spinSpeed = 100;
+  let totalSpin = 20 + Math.floor(Math.random() * 10); // durasi
+  let intervalTime = 80;
 
-  const spinner = setInterval(() => {
+  const spinInterval = setInterval(() => {
     const hero = filtered[index % filtered.length];
-    imageEl.src = hero.img;
-    nameEl.textContent = hero.name;
+    heroImage.src = hero.img;
+    heroName.textContent = hero.name;
     index++;
 
-    if (index >= totalSpins) {
-      clearInterval(spinner);
+    if (index >= totalSpin) {
+      clearInterval(spinInterval);
     }
-  }, spinSpeed);
+  }, intervalTime);
 });

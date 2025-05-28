@@ -7,28 +7,22 @@ const heroName = document.getElementById("hero-name");
 const heroRole = document.getElementById("hero-role");
 const spinBtn = document.getElementById("spin-btn");
 const loadingText = document.getElementById("loading-text");
+const roleButtons = document.querySelectorAll("#role-buttons button");
 
-// Fetch file JSON
 fetch("hero_mlbb_with_images.json")
-  .then(res => res.json())
+  .then(response => response.json())
   .then(data => {
     heroes = data;
     filterHeroes();
   });
 
 function setHero(hero) {
-  heroImg.classList.remove("show");
-  heroName.classList.remove("show");
-  heroRole.classList.remove("show");
-
-  setTimeout(() => {
-    heroImg.src = hero.img;
-    heroName.textContent = `🎮 ${hero.name}`;
-    heroRole.textContent = `Role: ${hero.role.join(", ")}`;
-    heroImg.classList.add("show");
-    heroName.classList.add("show");
-    heroRole.classList.add("show");
-  }, 100);
+  heroImg.src = hero.img;
+  heroName.textContent = `🎮 ${hero.name}`;
+  heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+  heroImg.classList.add("show");
+  heroName.classList.add("show");
+  heroRole.classList.add("show");
 }
 
 function filterHeroes() {
@@ -36,10 +30,10 @@ function filterHeroes() {
     ? heroes
     : heroes.filter(h => h.role.includes(currentRole));
   if (filtered.length > 0) {
-    setHero(filtered[0]);
+    setHero(filtered[Math.floor(Math.random() * filtered.length)]);
   } else {
     heroImg.src = "";
-    heroName.textContent = "⚠️ Tidak ada hero dalam role ini";
+    heroName.textContent = "Tidak ada hero dalam role ini";
     heroRole.textContent = "";
   }
 }
@@ -47,10 +41,13 @@ function filterHeroes() {
 function setRole(role) {
   currentRole = role;
 
-  // Atur tombol aktif
-  const buttons = document.querySelectorAll("#role-buttons button");
-  buttons.forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.role === role);
+  // Highlight tombol aktif
+  roleButtons.forEach(btn => {
+    if (btn.textContent.includes(role) || (role === "All" && btn.textContent.includes("Semua"))) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
   });
 
   filterHeroes();
@@ -64,14 +61,16 @@ spinBtn.onclick = () => {
   heroName.classList.remove("show");
   heroRole.classList.remove("show");
 
-  // Animasi bergantian
-  let spinTime = 2000;
   let interval = 100;
-  let spinInterval = setInterval(() => {
+  let spinTime = 2000;
+  let counter = 0;
+
+  const spinInterval = setInterval(() => {
     const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
     heroImg.src = randomHero.img;
     heroName.textContent = `🎮 ${randomHero.name}`;
     heroRole.textContent = `Role: ${randomHero.role.join(", ")}`;
+    counter += interval;
   }, interval);
 
   setTimeout(() => {

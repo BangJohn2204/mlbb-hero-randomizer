@@ -1,96 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MLBB Hero Randomizer + Animated Spin</title>
-  <style>
-    body {
-      margin: 0;
-      background: transparent;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: white;
-      text-align: center;
-    }
-
-    select, button {
-      font-size: 16px;
-      padding: 10px;
-      margin: 8px;
-      border-radius: 10px;
-      border: none;
-    }
-
-    #hero-img {
-      width: 200px;
-      height: 200px;
-      border-radius: 16px;
-      object-fit: cover;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px #000;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.5s ease;
-    }
-
-    #hero-img.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    #hero-name {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px #000;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    #hero-name.show {
-      opacity: 1;
-    }
-
-    #hero-role {
-      font-size: 20px;
-      color: #ccc;
-      margin-bottom: 30px;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    #hero-role.show {
-      opacity: 1;
-    }
-
-    #spin-btn {
-      background: #1e90ff;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #spin-btn:hover {
-      background: #0078d7;
-    }
-
-    #loading-text {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 20px;
-      display: none;
-      animation: blink 1s linear infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-  </style>
+  <title>MLBB Hero Randomizer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <select id="role-filter">
@@ -108,69 +22,6 @@
   <div id="hero-role"></div>
   <button id="spin-btn">🎯 Spin Hero!</button>
 
-  <script>
-    let heroes = [];
-    let filtered = [];
-    const heroImg = document.getElementById("hero-img");
-    const heroName = document.getElementById("hero-name");
-    const heroRole = document.getElementById("hero-role");
-    const spinBtn = document.getElementById("spin-btn");
-    const roleFilter = document.getElementById("role-filter");
-    const loadingText = document.getElementById("loading-text");
-
-    fetch("hero_mlbb_with_images.json")
-      .then(response => response.json())
-      .then(data => {
-        heroes = data;
-        filterHeroes();
-      });
-
-    function setHero(hero) {
-      heroImg.classList.remove("show");
-      heroName.classList.remove("show");
-      heroRole.classList.remove("show");
-
-      setTimeout(() => {
-        heroImg.src = hero.img;
-        heroName.textContent = `🎮 ${hero.name}`;
-        heroRole.textContent = `Role: ${hero.role.join(", ")}`;
-
-        heroImg.classList.add("show");
-        heroName.classList.add("show");
-        heroRole.classList.add("show");
-      }, 200);
-    }
-
-    function filterHeroes() {
-      const selectedRole = roleFilter.value;
-      filtered = selectedRole === "All"
-        ? heroes
-        : heroes.filter(h => h.role.includes(selectedRole));
-      if (filtered.length > 0) setHero(filtered[0]);
-      else {
-        heroImg.src = "";
-        heroName.textContent = "Tidak ada hero dalam role ini";
-        heroRole.textContent = "";
-      }
-    }
-
-    spinBtn.onclick = () => {
-      if (filtered.length > 0) {
-        // Munculkan animasi SPIN
-        loadingText.style.display = "block";
-        heroImg.classList.remove("show");
-        heroName.classList.remove("show");
-        heroRole.classList.remove("show");
-
-        setTimeout(() => {
-          loadingText.style.display = "none";
-          const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-          setHero(randomHero);
-        }, 5000); // durasi spin 2 detik
-      }
-    };
-
-    roleFilter.onchange = filterHeroes;
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

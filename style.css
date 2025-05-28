@@ -1,39 +1,49 @@
 body {
   margin: 0;
-  background: #000;
+  background: transparent;
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   color: white;
-}
-
-.container {
   text-align: center;
 }
 
-select, button {
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 10px;
+#role-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#role-buttons button {
+  background: #333;
+  color: white;
   border: none;
-  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+#role-buttons button:hover {
+  background: #555;
 }
 
 #hero-img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255,255,255,0.2);
-  margin: 20px auto;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px #000;
   opacity: 0;
-  transform: scale(0.8);
+  transform: scale(0.5);
   transition: all 0.5s ease;
 }
-
 #hero-img.show {
   opacity: 1;
   transform: scale(1);
@@ -43,10 +53,10 @@ select, button {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-shadow: 2px 2px 4px #000;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-
 #hero-name.show {
   opacity: 1;
 }
@@ -54,30 +64,32 @@ select, button {
 #hero-role {
   font-size: 20px;
   color: #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-
 #hero-role.show {
   opacity: 1;
 }
 
 #spin-btn {
-  background-color: #1e90ff;
+  background: #1e90ff;
   color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
 }
-
 #spin-btn:hover {
-  background-color: #0078d7;
+  background: #0078d7;
 }
 
 #loading-text {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 20px;
+  margin: 20px;
   display: none;
   animation: blink 1s linear infinite;
 }

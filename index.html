@@ -5,43 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MLBB Hero Spinner</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    .spinner-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    #hero-image {
-      width: 200px;
-      height: 200px;
-      object-fit: contain;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
-    }
-    #hero-name {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
-    #spin-button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <div class="spinner-container">
+    <select id="role-filter">
+      <option value="All">All Roles</option>
+      <option value="Fighter">Fighter</option>
+      <option value="Tank">Tank</option>
+      <option value="Assassin">Assassin</option>
+      <option value="Marksman">Marksman</option>
+      <option value="Support">Support</option>
+      <option value="Mage">Mage</option>
+    </select>
     <div id="hero-display">
       <img id="hero-image" src="" alt="Hero Image">
       <h2 id="hero-name"></h2>
@@ -49,35 +24,7 @@
     <button id="spin-button">Spin</button>
   </div>
 
-  <script>
-    const heroes = [
-      { name: "Lapu-lapu", img: "https://i.imgur.com/abcd123.jpg" },
-      { name: "Ruby", img: "https://i.imgur.com/efgh456.jpg" },
-      { name: "Selena", img: "https://i.imgur.com/ijkl789.jpg" },
-      { name: "Roger", img: "https://i.imgur.com/mnop012.jpg" }
-      // Tambah lebih banyak hero sesuai kebutuhan
-    ];
-
-    const imageEl = document.getElementById("hero-image");
-    const nameEl = document.getElementById("hero-name");
-    const button = document.getElementById("spin-button");
-
-    button.addEventListener("click", () => {
-      let index = 0;
-      let totalSpins = 25 + Math.floor(Math.random() * 10); // antara 25-34
-      let spinSpeed = 100;
-
-      const spinner = setInterval(() => {
-        const hero = heroes[index % heroes.length];
-        imageEl.src = hero.img;
-        nameEl.textContent = hero.name;
-        index++;
-
-        if (index >= totalSpins) {
-          clearInterval(spinner);
-        }
-      }, spinSpeed);
-    });
-  </script>
+  <script src="heroes_array.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -3,26 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <title>MLBB Hero Randomizer</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <select id="role-filter">
-      <option value="All">🔁 Semua Role</option>
-      <option value="Fighter">🥊 Fighter</option>
-      <option value="Marksman">🏹 Marksman</option>
-      <option value="Tank">🛡️ Tank</option>
-      <option value="Support">💚 Support</option>
-      <option value="Assassin">🗡️ Assassin</option>
-      <option value="Mage">✨ Mage</option>
-    </select>
-
-    <div id="loading-text">🎲 SPINNING...</div>
-    <img id="hero-img" src="" alt="Hero" />
-    <div id="hero-name">Pilih Role & Spin Hero!</div>
-    <div id="hero-role"></div>
-    <button id="spin-btn">🎯 Spin Hero!</button>
+  <div id="role-buttons">
+    <button onclick="setRole('All')">🔁 Semua</button>
+    <button onclick="setRole('Fighter')">🥊 Fighter</button>
+    <button onclick="setRole('Marksman')">🏹 Marksman</button>
+    <button onclick="setRole('Tank')">🛡️ Tank</button>
+    <button onclick="setRole('Support')">💚 Support</button>
+    <button onclick="setRole('Assassin')">🗡️ Assassin</button>
   </div>
+
+  <div id="loading-text">🎲 SPINNING...</div>
+  <img id="hero-img" src="" alt="Hero" />
+  <div id="hero-name">Pilih Role & Spin Hero!</div>
+  <div id="hero-role"></div>
+  <button id="spin-btn">🎯 Spin Hero!</button>
 
   <script src="script.js"></script>
 </body>

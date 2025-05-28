@@ -13,24 +13,30 @@ fetch("hero_mlbb_with_images.json")
   .then(response => response.json())
   .then(data => {
     heroes = data;
-    filterHeroes();
+    setRole("All"); // Inisialisasi awal
   });
 
+// Tampilkan 1 hero
 function setHero(hero) {
   heroImg.src = hero.img;
   heroName.textContent = `🎮 ${hero.name}`;
   heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+  
+  // Efek muncul
   heroImg.classList.add("show");
   heroName.classList.add("show");
   heroRole.classList.add("show");
 }
 
+// Filter berdasarkan role
 function filterHeroes() {
   filtered = currentRole === "All"
     ? heroes
     : heroes.filter(h => h.role.includes(currentRole));
+
   if (filtered.length > 0) {
-    setHero(filtered[Math.floor(Math.random() * filtered.length)]);
+    const random = filtered[Math.floor(Math.random() * filtered.length)];
+    setHero(random);
   } else {
     heroImg.src = "";
     heroName.textContent = "Tidak ada hero dalam role ini";
@@ -38,10 +44,10 @@ function filterHeroes() {
   }
 }
 
+// Pilih Role
 function setRole(role) {
   currentRole = role;
 
-  // Highlight tombol aktif
   roleButtons.forEach(btn => {
     if (btn.textContent.includes(role) || (role === "All" && btn.textContent.includes("Semua"))) {
       btn.classList.add("active");
@@ -53,6 +59,7 @@ function setRole(role) {
   filterHeroes();
 }
 
+// Fungsi SPIN
 spinBtn.onclick = () => {
   if (filtered.length === 0) return;
 
@@ -66,10 +73,10 @@ spinBtn.onclick = () => {
   let counter = 0;
 
   const spinInterval = setInterval(() => {
-    const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-    heroImg.src = randomHero.img;
-    heroName.textContent = `🎮 ${randomHero.name}`;
-    heroRole.textContent = `Role: ${randomHero.role.join(", ")}`;
+    const tempHero = filtered[Math.floor(Math.random() * filtered.length)];
+    heroImg.src = tempHero.img;
+    heroName.textContent = `🎮 ${tempHero.name}`;
+    heroRole.textContent = `Role: ${tempHero.role.join(", ")}`;
     counter += interval;
   }, interval);
 

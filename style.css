@@ -19,6 +19,11 @@ body {
   margin-bottom: 20px;
 }
 
+#role-buttons button.active {
+  background: #1e90ff;
+  font-weight: bold;
+}
+
 #role-buttons button {
   background: #333;
   color: white;

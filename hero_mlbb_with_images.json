@@ -2,7 +2,8 @@
   {
     "name": "Ruby",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/b/b4/Hero291-portrait.png/revision/latest?cb=20241021141313"
   },
@@ -51,7 +52,8 @@
   {
     "name": "Barats",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero991-portrait.png/revision/latest?cb=20241021143047"
   },
@@ -72,7 +74,8 @@
   {
     "name": "Kaja",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero621-portrait.png/revision/latest?cb=20241021142136"
   },
@@ -135,14 +138,16 @@
   {
     "name": "Gatotkaca",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero411-portrait.png/revision/latest?cb=20241021141617"
   },
   {
     "name": "Lapu-lapu",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero371-portrait.png/revision/latest?cb=20241021141516"
   },
@@ -177,14 +182,16 @@
   {
     "name": "Roger",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Marksman"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/3/33/Hero391-portrait.png/revision/latest?cb=20241021141547"
   },
   {
     "name": "Hilda",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/dc/Hero351-portrait.png/revision/latest?cb=20241021141445"
   },
@@ -205,14 +212,16 @@
   {
     "name": "Zilong",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero161-portrait.png/revision/latest?cb=20241021141000"
   },
   {
     "name": "Alucard",
     "role": [
-      "Fighter"
+      "Fighter",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/01/Hero071-portrait.png/revision/latest?cb=20241021140353"
   },
@@ -303,7 +312,8 @@
   {
     "name": "Yi Sun-shin",
     "role": [
-      "Marksman"
+      "Marksman",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero301-portrait.png/revision/latest?cb=20241021141329"
   },
@@ -324,7 +334,8 @@
   {
     "name": "Lesley",
     "role": [
-      "Marksman"
+      "Marksman",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero531-portrait.png/revision/latest?cb=20241021141920"
   },
@@ -352,6 +363,7 @@
   {
     "name": "Roger",
     "role": [
+      "Fighter",
       "Marksman"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/3/33/Hero391-portrait.png/revision/latest?cb=20241021141547"
@@ -429,6 +441,7 @@
   {
     "name": "Ruby",
     "role": [
+      "Fighter",
       "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/b/b4/Hero291-portrait.png/revision/latest?cb=20241021141313"
@@ -443,6 +456,7 @@
   {
     "name": "Barats",
     "role": [
+      "Fighter",
       "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero991-portrait.png/revision/latest?cb=20241021143047"
@@ -464,21 +478,24 @@
   {
     "name": "Lolita",
     "role": [
-      "Tank"
+      "Tank",
+      "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/2/20/Hero201-portrait.png/revision/latest?cb=20241021141100"
   },
   {
     "name": "Johnson",
     "role": [
-      "Tank"
+      "Tank",
+      "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/4/4a/Hero321-portrait.png/revision/latest?cb=20241021141359"
   },
   {
     "name": "Esmeralda",
     "role": [
-      "Tank"
+      "Tank",
+      "Mage"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/4/42/Hero811-portrait.png/revision/latest?cb=20241021142615"
   },
@@ -520,6 +537,7 @@
   {
     "name": "Hilda",
     "role": [
+      "Fighter",
       "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/dc/Hero351-portrait.png/revision/latest?cb=20241021141445"
@@ -527,7 +545,8 @@
   {
     "name": "Minotaur",
     "role": [
-      "Tank"
+      "Tank",
+      "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero191-portrait.png/revision/latest?cb=20241021141046"
   },
@@ -597,6 +616,7 @@
   {
     "name": "Kaja",
     "role": [
+      "Fighter",
       "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero621-portrait.png/revision/latest?cb=20241021142136"
@@ -604,6 +624,7 @@
   {
     "name": "Lolita",
     "role": [
+      "Tank",
       "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/2/20/Hero201-portrait.png/revision/latest?cb=20241021141100"
@@ -625,6 +646,7 @@
   {
     "name": "Minotaur",
     "role": [
+      "Tank",
       "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero191-portrait.png/revision/latest?cb=20241021141046"
@@ -632,6 +654,7 @@
   {
     "name": "Nana",
     "role": [
+      "Mage",
       "Support"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero051-portrait.png/revision/latest?cb=20241021140348"
@@ -646,7 +669,8 @@
   {
     "name": "Mathilda",
     "role": [
-      "Support"
+      "Support",
+      "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero1021-portrait.png/revision/latest?cb=20241021143131"
   },
@@ -660,7 +684,8 @@
   {
     "name": "Chip",
     "role": [
-      "Support"
+      "Support",
+      "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero1241-portrait.png/revision/latest?cb=20241021140835"
   },
@@ -702,6 +727,7 @@
   {
     "name": "Lapu-lapu",
     "role": [
+      "Fighter",
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero371-portrait.png/revision/latest?cb=20241021141516"
@@ -709,6 +735,7 @@
   {
     "name": "Lesley",
     "role": [
+      "Marksman",
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero531-portrait.png/revision/latest?cb=20241021141920"
@@ -716,7 +743,8 @@
   {
     "name": "Selena",
     "role": [
-      "Assassin"
+      "Assassin",
+      "Mage"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero631-portrait.png/revision/latest?cb=20241021142149"
   },
@@ -737,6 +765,7 @@
   {
     "name": "Yi Sun-shin",
     "role": [
+      "Marksman",
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero301-portrait.png/revision/latest?cb=20241021141329"
@@ -758,7 +787,8 @@
   {
     "name": "Karina",
     "role": [
-      "Assassin"
+      "Assassin",
+      "Mage"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero081-portrait.png/revision/latest?cb=20241021140357"
   },
@@ -779,6 +809,7 @@
   {
     "name": "Zilong",
     "role": [
+      "Fighter",
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero161-portrait.png/revision/latest?cb=20241021141000"
@@ -786,6 +817,7 @@
   {
     "name": "Alucard",
     "role": [
+      "Fighter",
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/01/Hero071-portrait.png/revision/latest?cb=20241021140353"

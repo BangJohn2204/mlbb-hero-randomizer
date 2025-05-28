@@ -1,27 +1,17 @@
 let heroes = [];
 let filtered = [];
+let currentRole = "All";
+
 const heroImg = document.getElementById("hero-img");
 const heroName = document.getElementById("hero-name");
 const heroRole = document.getElementById("hero-role");
 const spinBtn = document.getElementById("spin-btn");
-const roleFilter = document.getElementById("role-filter");
 const loadingText = document.getElementById("loading-text");
 
-// Ambil dan normalisasi data JSON
 fetch("hero_mlbb_with_images.json")
   .then(response => response.json())
   .then(data => {
-    heroes = data.map(hero => {
-      let roles = Array.isArray(hero.role)
-        ? hero.role
-        : String(hero.role).split("/").map(r => r.trim());
-
-      return {
-        name: hero.name,
-        img: hero.img,
-        role: roles
-      };
-    });
+    heroes = data;
     filterHeroes();
   });
 
@@ -34,20 +24,20 @@ function setHero(hero) {
     heroImg.src = hero.img;
     heroName.textContent = `🎮 ${hero.name}`;
     heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+
     heroImg.classList.add("show");
     heroName.classList.add("show");
     heroRole.classList.add("show");
-  }, 100);
+  }, 200);
 }
 
 function filterHeroes() {
-  const selectedRole = roleFilter.value;
-  filtered = selectedRole === "All"
+  filtered = currentRole === "All"
     ? heroes
-    : heroes.filter(h => h.role.includes(selectedRole));
+    : heroes.filter(h => h.role.includes(currentRole));
 
   if (filtered.length > 0) {
-    setHero(filtered[0]);
+    setHero(filtered[Math.floor(Math.random() * filtered.length)]);
   } else {
     heroImg.src = "";
     heroName.textContent = "Tidak ada hero dalam role ini";
@@ -55,31 +45,22 @@ function filterHeroes() {
   }
 }
 
+function setRole(role) {
+  currentRole = role;
+  filterHeroes();
+}
+
 spinBtn.onclick = () => {
-  if (filtered.length === 0) {
-    alert("Tidak ada hero dengan role ini!");
-    return;
+  if (filtered.length > 0) {
+    loadingText.style.display = "block";
+    heroImg.classList.remove("show");
+    heroName.classList.remove("show");
+    heroRole.classList.remove("show");
+
+    setTimeout(() => {
+      loadingText.style.display = "none";
+      const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
+      setHero(randomHero);
+    }, 2000);
   }
-
-  loadingText.style.display = "block";
-  let spinCount = 0;
-  const totalSpins = 25 + Math.floor(Math.random() * 10);
-
-  const spinInterval = setInterval(() => {
-    const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-    heroImg.src = randomHero.img;
-    heroName.textContent = `🎮 ${randomHero.name}`;
-    heroRole.textContent = `Role: ${randomHero.role.join(", ")}`;
-
-    spinCount++;
-    if (spinCount >= totalSpins) {
-      clearInterval(spinInterval);
-      setTimeout(() => {
-        loadingText.style.display = "none";
-        setHero(randomHero); // terakhir ditampilkan dengan animasi
-      }, 200);
-    }
-  }, 100);
 };
-
-roleFilter.onchange = filterHeroes;

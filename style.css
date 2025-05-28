@@ -3,31 +3,34 @@ body {
   background: #000;
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
   color: white;
+}
+
+.container {
   text-align: center;
 }
 
 select, button {
   font-size: 16px;
   padding: 10px;
-  margin: 8px;
+  margin: 10px auto;
   border-radius: 10px;
   border: none;
+  display: block;
 }
 
 #hero-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 16px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 0 20px #000;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  margin: 20px auto;
   opacity: 0;
-  transform: scale(0.5);
+  transform: scale(0.8);
   transition: all 0.5s ease;
 }
 
@@ -40,7 +43,6 @@ select, button {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
-  text-shadow: 2px 2px 4px #000;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -52,7 +54,7 @@ select, button {
 #hero-role {
   font-size: 20px;
   color: #ccc;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -62,20 +64,20 @@ select, button {
 }
 
 #spin-btn {
-  background: #1e90ff;
+  background-color: #1e90ff;
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 #spin-btn:hover {
-  background: #0078d7;
+  background-color: #0078d7;
 }
 
 #loading-text {
   font-size: 24px;
   font-weight: bold;
-  margin: 20px;
+  margin-top: 20px;
   display: none;
   animation: blink 1s linear infinite;
 }

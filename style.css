@@ -1,89 +1,102 @@
 body {
   margin: 0;
-  background: #0d0d0d;
-  font-family: Arial, sans-serif;
+  background: #111;
+  font-family: 'Arial', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   color: white;
-  text-align: center;
+  overflow: hidden;
 }
 
 #container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  max-width: 400px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
 }
 
 #role-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
+  margin-bottom: 20px;
 }
 
 #role-buttons button {
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: none;
   background: #333;
-  color: white;
+  color: #fff;
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
-#role-buttons button.active,
 #role-buttons button:hover {
-  background: #1e90ff;
+  background: #555;
+}
+
+#role-buttons .active {
+  background: #0078d7;
+  font-weight: bold;
 }
 
 #hero-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 12px;
+  width: 220px;
+  height: 220px;
+  border-radius: 16px;
   object-fit: cover;
+  margin: 20px auto;
   box-shadow: 0 0 20px #000;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease;
+  display: block;
+}
+
+#hero-img.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
 #hero-name {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   text-shadow: 2px 2px 4px #000;
+  margin-top: 10px;
 }
 
 #hero-role {
   font-size: 18px;
   color: #ccc;
+  margin-bottom: 20px;
 }
 
 #spin-btn {
-  margin-top: 12px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background: #28a745;
-  border: none;
-  border-radius: 10px;
+  background: #1e90ff;
   color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
+
 #spin-btn:hover {
-  background: #218838;
+  background: #0078d7;
 }
 
 #loading-text {
   font-size: 20px;
   font-weight: bold;
-  margin: 10px;
   display: none;
   animation: blink 1s linear infinite;
+  margin-top: 20px;
 }
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  50% { opacity: 0.2; }
 }

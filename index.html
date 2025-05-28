@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MLBB Hero Randomizer + Role Filter</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
+
+    select, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 8px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    #hero-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    #hero-name {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    #hero-role {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    #spin-btn {
+      background: #1e90ff;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #spin-btn:hover {
+      background: #0078d7;
+    }
+  </style>
+</head>
+<body>
+  <select id="role-filter">
+    <option value="All">🔁 Semua Role</option>
+    <option value="Fighter">🥊 Fighter</option>
+    <option value="Marksman">🏹 Marksman</option>
+    <option value="Tank">🛡️ Tank</option>
+    <option value="Support">💚 Support</option>
+    <option value="Assassin">🗡️ Assassin</option>
+  </select>
+
+  <img id="hero-img" src="" alt="Hero" />
+  <div id="hero-name">Pilih Role & Spin Hero!</div>
+  <div id="hero-role"></div>
+  <button id="spin-btn">🎯 Spin Hero!</button>
+
+  <script>
+    let heroes = [];
+    let filtered = [];
+    const heroImg = document.getElementById("hero-img");
+    const heroName = document.getElementById("hero-name");
+    const heroRole = document.getElementById("hero-role");
+    const spinBtn = document.getElementById("spin-btn");
+    const roleFilter = document.getElementById("role-filter");
+
+    fetch("hero_mlbb_with_images.json")
+      .then(response => response.json())
+      .then(data => {
+        heroes = data;
+        filterHeroes(); // Load awal
+      });
+
+    function setHero(hero) {
+      heroImg.src = hero.img;
+      heroName.textContent = `🎮 ${hero.name}`;
+      heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+    }
+
+    function filterHeroes() {
+      const selectedRole = roleFilter.value;
+      filtered = selectedRole === "All"
+        ? heroes
+        : heroes.filter(h => h.role.includes(selectedRole));
+      if (filtered.length > 0) setHero(filtered[0]);
+      else {
+        heroImg.src = "";
+        heroName.textContent = "Tidak ada hero dalam role ini";
+        heroRole.textContent = "";
+      }
+    }
+
+    spinBtn.onclick = () => {
+      if (filtered.length > 0) {
+        const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
+        setHero(randomHero);
+      }
+    };
+
+    roleFilter.onchange = filterHeroes;
+  </script>
+</body>
+</html>

@@ -1,79 +1,89 @@
 let heroes = [];
 let filtered = [];
+let currentRole = "All";
+
 const heroImg = document.getElementById("hero-img");
 const heroName = document.getElementById("hero-name");
 const heroRole = document.getElementById("hero-role");
 const spinBtn = document.getElementById("spin-btn");
-const roleFilter = document.getElementById("role-filter");
 const loadingText = document.getElementById("loading-text");
+const roleButtons = document.querySelectorAll("#role-buttons button");
 
-// Load hero data dari JSON
 fetch("hero_mlbb_with_images.json")
   .then(response => response.json())
   .then(data => {
     heroes = data;
-    filterHeroes(); // awal: tampilkan 1 hero dari semua
+    setRole("All"); // Inisialisasi awal
   });
 
-// Tampilkan hero ke layar
+// Tampilkan 1 hero
 function setHero(hero) {
   heroImg.src = hero.img;
   heroName.textContent = `🎮 ${hero.name}`;
   heroRole.textContent = `Role: ${hero.role.join(", ")}`;
-
-  // Tambahkan animasi show
+  
+  // Efek muncul
   heroImg.classList.add("show");
   heroName.classList.add("show");
   heroRole.classList.add("show");
 }
 
-// Filter hero berdasarkan role
+// Filter berdasarkan role
 function filterHeroes() {
-  const selectedRole = roleFilter.value;
-  filtered = selectedRole === "All"
+  filtered = currentRole === "All"
     ? heroes
-    : heroes.filter(h => h.role.includes(selectedRole));
+    : heroes.filter(h => h.role.includes(currentRole));
 
   if (filtered.length > 0) {
-    setHero(filtered[Math.floor(Math.random() * filtered.length)]);
+    const random = filtered[Math.floor(Math.random() * filtered.length)];
+    setHero(random);
   } else {
     heroImg.src = "";
-    heroName.textContent = "❌ Tidak ada hero dalam role ini";
+    heroName.textContent = "Tidak ada hero dalam role ini";
     heroRole.textContent = "";
   }
 }
 
-// Tombol SPIN ditekan
+// Pilih Role
+function setRole(role) {
+  currentRole = role;
+
+  roleButtons.forEach(btn => {
+    if (btn.textContent.includes(role) || (role === "All" && btn.textContent.includes("Semua"))) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  filterHeroes();
+}
+
+// Fungsi SPIN
 spinBtn.onclick = () => {
   if (filtered.length === 0) return;
 
   loadingText.style.display = "block";
-
-  // Hapus animasi sebelumnya
   heroImg.classList.remove("show");
   heroName.classList.remove("show");
   heroRole.classList.remove("show");
 
-  let interval = 100;     // kecepatan animasi hero berganti
-  let spinTime = 2000;    // total durasi spin
-  let spinInterval = setInterval(() => {
-    const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-    heroImg.src = randomHero.img;
-    heroName.textContent = `🎮 ${randomHero.name}`;
-    heroRole.textContent = `Role: ${randomHero.role.join(", ")}`;
+  let interval = 100;
+  let spinTime = 2000;
+  let counter = 0;
+
+  const spinInterval = setInterval(() => {
+    const tempHero = filtered[Math.floor(Math.random() * filtered.length)];
+    heroImg.src = tempHero.img;
+    heroName.textContent = `🎮 ${tempHero.name}`;
+    heroRole.textContent = `Role: ${tempHero.role.join(", ")}`;
+    counter += interval;
   }, interval);
 
-  // Setelah selesai spin, tampilkan hero final dengan animasi
   setTimeout(() => {
     clearInterval(spinInterval);
     loadingText.style.display = "none";
-
     const finalHero = filtered[Math.floor(Math.random() * filtered.length)];
-    setHero(finalHero); // tampilkan hero dengan animasi show
+    setHero(finalHero);
   }, spinTime);
-};
-
-// Saat filter role berubah
-roleFilter.onchange = () => {
-  filterHeroes();
 };

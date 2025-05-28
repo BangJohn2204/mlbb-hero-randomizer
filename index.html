@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MLBB Hero Randomizer + Role Filter</title>
+  <title>MLBB Hero Randomizer + Animated Spin</title>
   <style>
     body {
       margin: 0;
@@ -32,6 +32,14 @@
       object-fit: cover;
       margin-bottom: 20px;
       box-shadow: 0 0 20px #000;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.5s ease;
+    }
+
+    #hero-img.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
     #hero-name {
@@ -39,12 +47,24 @@
       font-weight: bold;
       margin-bottom: 10px;
       text-shadow: 2px 2px 4px #000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #hero-name.show {
+      opacity: 1;
     }
 
     #hero-role {
       font-size: 20px;
       color: #ccc;
       margin-bottom: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #hero-role.show {
+      opacity: 1;
     }
 
     #spin-btn {
@@ -56,6 +76,19 @@
 
     #spin-btn:hover {
       background: #0078d7;
+    }
+
+    #loading-text {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px;
+      display: none;
+      animation: blink 1s linear infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
     }
   </style>
 </head>
@@ -69,6 +102,7 @@
     <option value="Assassin">🗡️ Assassin</option>
   </select>
 
+  <div id="loading-text">🎲 SPINNING...</div>
   <img id="hero-img" src="" alt="Hero" />
   <div id="hero-name">Pilih Role & Spin Hero!</div>
   <div id="hero-role"></div>
@@ -82,18 +116,29 @@
     const heroRole = document.getElementById("hero-role");
     const spinBtn = document.getElementById("spin-btn");
     const roleFilter = document.getElementById("role-filter");
+    const loadingText = document.getElementById("loading-text");
 
     fetch("hero_mlbb_with_images.json")
       .then(response => response.json())
       .then(data => {
         heroes = data;
-        filterHeroes(); // Load awal
+        filterHeroes();
       });
 
     function setHero(hero) {
-      heroImg.src = hero.img;
-      heroName.textContent = `🎮 ${hero.name}`;
-      heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+      heroImg.classList.remove("show");
+      heroName.classList.remove("show");
+      heroRole.classList.remove("show");
+
+      setTimeout(() => {
+        heroImg.src = hero.img;
+        heroName.textContent = `🎮 ${hero.name}`;
+        heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+
+        heroImg.classList.add("show");
+        heroName.classList.add("show");
+        heroRole.classList.add("show");
+      }, 200);
     }
 
     function filterHeroes() {
@@ -111,8 +156,17 @@
 
     spinBtn.onclick = () => {
       if (filtered.length > 0) {
-        const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-        setHero(randomHero);
+        // Munculkan animasi SPIN
+        loadingText.style.display = "block";
+        heroImg.classList.remove("show");
+        heroName.classList.remove("show");
+        heroRole.classList.remove("show");
+
+        setTimeout(() => {
+          loadingText.style.display = "none";
+          const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
+          setHero(randomHero);
+        }, 5000); // durasi spin 2 detik
       }
     };
 

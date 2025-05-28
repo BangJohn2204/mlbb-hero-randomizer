@@ -5,6 +5,7 @@ const roleFilter = document.getElementById("role-filter");
 
 let heroes = [];
 
+// Ambil data dari JSON
 fetch("hero_mlbb_with_images_cleaned.json")
   .then(res => res.json())
   .then(data => {
@@ -13,7 +14,17 @@ fetch("hero_mlbb_with_images_cleaned.json")
 
 function getFilteredHeroes(role) {
   if (role === "All") return heroes;
-  return heroes.filter(hero => hero.role.includes(role));
+
+  return heroes.filter(hero => {
+    if (Array.isArray(hero.role)) {
+      // role dalam bentuk array
+      return hero.role.includes(role);
+    } else if (typeof hero.role === "string") {
+      // role dalam bentuk string: "Fighter/Assassin"
+      return hero.role.split("/").map(r => r.trim()).includes(role);
+    }
+    return false;
+  });
 }
 
 spinBtn.addEventListener("click", () => {
@@ -26,8 +37,8 @@ spinBtn.addEventListener("click", () => {
   }
 
   let index = 0;
-  let totalSpin = 20 + Math.floor(Math.random() * 10); // durasi
-  let intervalTime = 80;
+  let totalSpin = 20 + Math.floor(Math.random() * 10);
+  let spinSpeed = 80;
 
   const spinInterval = setInterval(() => {
     const hero = filtered[index % filtered.length];
@@ -38,5 +49,5 @@ spinBtn.addEventListener("click", () => {
     if (index >= totalSpin) {
       clearInterval(spinInterval);
     }
-  }, intervalTime);
+  }, spinSpeed);
 });

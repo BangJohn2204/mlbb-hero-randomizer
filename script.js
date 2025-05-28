@@ -62,7 +62,7 @@ spinBtn.onclick = () => {
   heroRole.classList.remove("show");
 
   let interval = 100;
-  let spinTime = 2000;
+  let spinTime = 5000;
   let counter = 0;
 
   const spinInterval = setInterval(() => {

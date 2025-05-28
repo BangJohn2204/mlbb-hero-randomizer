@@ -13,16 +13,13 @@ fetch("hero_mlbb_with_images.json")
   .then(response => response.json())
   .then(data => {
     heroes = data;
-    filterHeroes(); // tampilkan hero langsung saat awal
+    filterHeroes();
   });
 
 function setHero(hero) {
   heroImg.src = hero.img;
   heroName.textContent = `🎮 ${hero.name}`;
   heroRole.textContent = `Role: ${hero.role.join(", ")}`;
-  heroImg.classList.add("show");
-  heroName.classList.add("show");
-  heroRole.classList.add("show");
 }
 
 function filterHeroes() {
@@ -43,16 +40,8 @@ function filterHeroes() {
 function setRole(role) {
   currentRole = role;
 
-  // Beri highlight tombol aktif
   roleButtons.forEach(btn => {
-    if (
-      btn.dataset.role === role ||
-      (role === "All" && btn.dataset.role === "All")
-    ) {
-      btn.classList.add("active");
-    } else {
-      btn.classList.remove("active");
-    }
+    btn.classList.toggle("active", btn.dataset.role === role);
   });
 
   filterHeroes();
@@ -62,9 +51,6 @@ spinBtn.onclick = () => {
   if (filtered.length === 0) return;
 
   loadingText.style.display = "block";
-  heroImg.classList.remove("show");
-  heroName.classList.remove("show");
-  heroRole.classList.remove("show");
 
   let interval = 100;
   let spinTime = 2000;
@@ -72,9 +58,7 @@ spinBtn.onclick = () => {
 
   const spinInterval = setInterval(() => {
     const randomHero = filtered[Math.floor(Math.random() * filtered.length)];
-    heroImg.src = randomHero.img;
-    heroName.textContent = `🎮 ${randomHero.name}`;
-    heroRole.textContent = `Role: ${randomHero.role.join(", ")}`;
+    setHero(randomHero);
     counter += interval;
   }, interval);
 
@@ -86,7 +70,6 @@ spinBtn.onclick = () => {
   }, spinTime);
 };
 
-// Pasang event click untuk semua tombol role
 roleButtons.forEach(button => {
   button.addEventListener("click", () => {
     setRole(button.dataset.role);

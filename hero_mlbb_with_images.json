@@ -296,13 +296,6 @@
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero651-portrait.png"
   },
   {
-    "name": "Kimmy",
-    "role": [
-      "Marksman"
-    ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
-  },
-  {
     "name": "Popol & Kupa",
     "role": [
       "Marksman"
@@ -600,13 +593,6 @@
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/c/c0/Hero341-portrait.png"
   },
   {
-    "name": "Faramis",
-    "role": [
-      "Support"
-    ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero761-portrait.png"
-  },
-  {
     "name": "Carmilla",
     "role": [
       "Support"
@@ -688,20 +674,6 @@
       "Tank"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero1241-portrait.png"
-  },
-  {
-    "name": "Harley",
-    "role": [
-      "Assassin"
-    ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/81/Hero421-portrait.png"
-  },
-  {
-    "name": "Kadita",
-    "role": [
-      "Assassin"
-    ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero751-portrait.png"
   },
   {
     "name": "Ling",
@@ -842,5 +814,206 @@
       "Assassin"
     ],
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/f/fc/Hero1221-portrait.png"
+  },
+  {
+    "name": "Harley",
+    "role": [
+      "Assasin",
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/81/Hero421-portrait.png"
+  },
+  {
+    "name": "Chang’e",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/6/63/Hero611-portrait.png"
+  },
+  {
+    "name": "Vale",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero661-portrait.png"
+  },
+  {
+    "name": "Kimmy",
+    "role": [
+      "Mage",
+      "Marksman"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
+  },
+  {
+    "name": "Kadita",
+    "role": [
+      "Assasin",
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
+  },
+  {
+    "name": "Faramis",
+    "role": [
+      "Support",
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
+  },
+  {
+    "name": "Cecilion",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/7/7f/Hero911-portrait.png"
+  },
+  {
+    "name": "Luo Yi",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero961-portrait.png"
+  },
+  {
+    "name": "Valir",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/9e/Hero571-portrait.png"
+  },
+  {
+    "name": "Pharsa",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero521-portrait.png"
+  },
+  {
+    "name": "Zhask",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero501-portrait.png"
+  },
+  {
+    "name": "Harith",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero731-portrait.png"
+  },
+  {
+    "name": "Lunox",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/d8/Hero681-portrait.png"
+  },
+  {
+    "name": "Lylia",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero861-portrait.png"
+  },
+  {
+    "name": "Odette",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero461-portrait.png"
+  },
+  {
+    "name": "Kagura",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/8e/Hero251-portrait.png"
+  },
+  {
+    "name": "Vexana",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero381-portrait.png"
+  },
+  {
+    "name": "Aurora",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/3/30/Hero361-portrait.png"
+  },
+  {
+    "name": "Alice",
+    "role": [
+      "Tank",
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero041-portrait.png"
+  },
+  {
+    "name": "Cyclops",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero331-portrait.png"
+  },
+  {
+    "name": "Eudora",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero151-portrait.png"
+  },
+  {
+    "name": "Gord",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/a/a7/Hero231-portrait.png"
+  },
+  {
+    "name": "Yve",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero1011-portrait.png"
+  },
+  {
+    "name": "Valentina",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1101-portrait.png"
+  },
+  {
+    "name": "Xavier",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/e0/Hero1151-portrait.png"
+  },
+  {
+    "name": "Novaria",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/d5/Hero1191-portrait.png"
+  },
+  {
+    "name": "Zhuxin",
+    "role": [
+      "Mage"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero1251-portrait.png"
+  },
+  {
+    "name": "Joy",
+    "role": [
+      "Assassin"
+    ],
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/f/fb/Hero1181-portrait.png"
   }
 ]

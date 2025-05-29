@@ -543,13 +543,6 @@
     "img": "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero191-portrait.png"
   },
   {
-    "name": "Balmond",
-    "role": [
-      "Tank"
-    ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero021-portrait.png"
-  },
-  {
     "name": "Tigreal",
     "role": [
       "Tank"
@@ -850,7 +843,7 @@
       "Assasin",
       "Mage"
     ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero751-portrait.png"
   },
   {
     "name": "Faramis",
@@ -858,7 +851,7 @@
       "Support",
       "Mage"
     ],
-    "img": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png"
+    "img": "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero761-portrait.png"
   },
   {
     "name": "Cecilion",

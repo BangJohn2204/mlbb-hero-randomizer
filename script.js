@@ -231,6 +231,9 @@ class HeroRandomizer {
         // Hide loading
         this.loadingSection.style.display = "none";
         
+        // Stop spin sound
+        this.soundManager.stopSpinSound();
+        
         // Reset button
         this.spinBtn.style.opacity = "";
         this.spinBtn.style.pointerEvents = "";
@@ -240,6 +243,11 @@ class HeroRandomizer {
         // Show final hero with animation
         const finalHero = this.getRandomHero();
         this.displayHero(finalHero, true);
+        
+        // Play result sound
+        setTimeout(() => {
+            this.soundManager.playResultSound();
+        }, 300);
         
         // Add celebration effect
         this.addCelebrationEffect();
@@ -335,57 +343,61 @@ class HeroRandomizer {
 // Sound Effects Class
 class SoundManager {
     constructor() {
-        this.sounds = {};
         this.initSounds();
     }
     
     initSounds() {
-        // Create audio context for web audio
+        // Load audio files
+        this.spinSound = new Audio("spin.mp3");
+        this.resultSound = new Audio("result.mp3");
+        
+        // Set audio properties
+        this.spinSound.volume = 0.7;
+        this.resultSound.volume = 0.8;
+        
+        // Preload audio files
+        this.spinSound.preload = "auto";
+        this.resultSound.preload = "auto";
+        
+        // Handle audio loading errors
+        this.spinSound.onerror = () => {
+            console.warn("Spin sound file not found or failed to load");
+        };
+        
+        this.resultSound.onerror = () => {
+            console.warn("Result sound file not found or failed to load");
+        };
+    }
+    
+    playSpinSound() {
         try {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        } catch (e) {
-            console.warn('Web Audio API not supported');
+            this.spinSound.currentTime = 0;
+            this.spinSound.play().catch(e => {
+                console.warn("Could not play spin sound:", e);
+            });
+        } catch (error) {
+            console.warn("Error playing spin sound:", error);
         }
     }
     
-    // Generate simple beep sounds
-    playSpinSound() {
-        if (!this.audioContext) return;
-        
-        const oscillator = this.audioContext.createOscillator();
-        const gainNode = this.audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(this.audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(800, this.audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(400, this.audioContext.currentTime + 0.1);
-        
-        gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
-        
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + 0.1);
+    playResultSound() {
+        try {
+            this.resultSound.currentTime = 0;
+            this.resultSound.play().catch(e => {
+                console.warn("Could not play result sound:", e);
+            });
+        } catch (error) {
+            console.warn("Error playing result sound:", error);
+        }
     }
     
-    playResultSound() {
-        if (!this.audioContext) return;
-        
-        const oscillator = this.audioContext.createOscillator();
-        const gainNode = this.audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(this.audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(523.25, this.audioContext.currentTime); // C5
-        oscillator.frequency.setValueAtTime(659.25, this.audioContext.currentTime + 0.1); // E5
-        oscillator.frequency.setValueAtTime(783.99, this.audioContext.currentTime + 0.2); // G5
-        
-        gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
-        
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + 0.3);
+    stopSpinSound() {
+        try {
+            this.spinSound.pause();
+            this.spinSound.currentTime = 0;
+        } catch (error) {
+            console.warn("Error stopping spin sound:", error);
+        }
     }
 }
 
@@ -404,16 +416,6 @@ class EnhancedHeroRandomizer extends HeroRandomizer {
         
         // Call parent spin method
         await super.spinHero();
-    }
-    
-    finishSpin() {
-        // Call parent finish method
-        super.finishSpin();
-        
-        // Play result sound
-        setTimeout(() => {
-            this.soundManager.playResultSound();
-        }, 500);
     }
 }
 

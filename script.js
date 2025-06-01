@@ -205,9 +205,12 @@ class HeroRandomizer {
         const buttonIcon = this.spinBtn.querySelector("i");
         buttonIcon.style.animation = "spin 2s linear infinite";
         
-        // Spin animation duration
-        const spinDuration = 3000 + Math.random() * 2000; // 3-5 seconds
-        const spinInterval = 150; // Change hero every 150ms
+        // Play spin sound
+        this.soundManager.playSpinSound();
+        
+        // Spin animation duration - 9 seconds to match the sound
+        const spinDuration = 9000; // 9 seconds
+        const spinInterval = 120; // Change hero every 120ms for smoother effect
         
         let spinTimer;
         let currentSpinTime = 0;
@@ -225,6 +228,11 @@ class HeroRandomizer {
                 this.heroImg.src = tempHero.img;
                 this.heroName.textContent = tempHero.name;
                 this.heroRole.textContent = `Role: ${tempHero.role.join(", ")}`;
+                
+                // Add blur effect during rapid spinning
+                const progress = currentSpinTime / spinDuration;
+                const blurAmount = Math.sin(progress * Math.PI) * 3; // Max blur 3px in the middle
+                this.heroImg.style.filter = `blur(${blurAmount}px)`;
             }
         }, spinInterval);
     }
@@ -242,14 +250,17 @@ class HeroRandomizer {
         const buttonIcon = this.spinBtn.querySelector("i");
         buttonIcon.style.animation = "";
         
+        // Remove blur effect
+        this.heroImg.style.filter = "";
+        
         // Show final hero with animation
         const finalHero = this.getRandomHero();
         this.displayHero(finalHero, true);
         
-        // Play result sound
+        // Play result sound after a short delay
         setTimeout(() => {
             this.soundManager.playResultSound();
-        }, 300);
+        }, 200);
         
         // Add celebration effect
         this.addCelebrationEffect();
@@ -413,10 +424,7 @@ class EnhancedHeroRandomizer extends HeroRandomizer {
     async spinHero() {
         if (this.filteredHeroes.length === 0 || this.isSpinning) return;
         
-        // Play spin sound
-        this.soundManager.playSpinSound();
-        
-        // Call parent spin method
+        // Call parent spin method (which now includes sound management)
         await super.spinHero();
     }
 }

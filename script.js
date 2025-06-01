@@ -96,11 +96,13 @@ class HeroRandomizer {
         
         this.currentRole = role;
         
-        // Update active button
+        // Update active button and aria attributes
         this.roleButtons.forEach(btn => {
             btn.classList.remove("active");
+            btn.setAttribute("aria-selected", "false");
             if (btn.dataset.role === role) {
                 btn.classList.add("active");
+                btn.setAttribute("aria-selected", "true");
             }
         });
         

@@ -1,31 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>MLBB Hero Randomizer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Hero Randomizer Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="container">
-    <h1>🎯 Random Hero MLBB</h1>
-
-    <div id="role-buttons">
-      <button onclick="setRole('All')" class="active">🔁 Semua</button>
-      <button onclick="setRole('Fighter')">🥊 Fighter</button>
-      <button onclick="setRole('Marksman')">🏹 Marksman</button>
-      <button onclick="setRole('Tank')">🛡️ Tank</button>
-      <button onclick="setRole('Support')">💚 Support</button>
-      <button onclick="setRole('Assassin')">🗡️ Assassin</button>
-      <button onclick="setRole('Mage')">🧙 Mage</button>
+    <!-- Background particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
 
-    <div id="loading-text">🎲 SPINNING...</div>
-    <img id="hero-img" src="" alt="Hero" />
-    <div id="hero-name">Pilih Role & Spin Hero!</div>
-    <div id="hero-role"></div>
-    <button id="spin-btn">🎯 SPIN HERO</button>
-  </div>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">
+                <i class="fas fa-dice"></i>
+                MLBB Hero Randomizer
+                <span class="pro-badge">PRO</span>
+            </h1>
+            <p class="subtitle">Temukan hero favoritmu secara acak!</p>
+        </div>
 
-  <script src="script.js"></script>
+        <!-- Role Selection -->
+        <div class="role-section">
+            <h3 class="section-title">
+                <i class="fas fa-users"></i>
+                Pilih Role
+            </h3>
+            <div class="role-buttons">
+                <button class="role-btn active" data-role="All">
+                    <i class="fas fa-globe"></i>
+                    <span>Semua</span>
+                </button>
+                <button class="role-btn" data-role="Fighter">
+                    <i class="fas fa-fist-raised"></i>
+                    <span>Fighter</span>
+                </button>
+                <button class="role-btn" data-role="Marksman">
+                    <i class="fas fa-crosshairs"></i>
+                    <span>Marksman</span>
+                </button>
+                <button class="role-btn" data-role="Tank">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Tank</span>
+                </button>
+                <button class="role-btn" data-role="Support">
+                    <i class="fas fa-heart"></i>
+                    <span>Support</span>
+                </button>
+                <button class="role-btn" data-role="Assassin">
+                    <i class="fas fa-user-ninja"></i>
+                    <span>Assassin</span>
+                </button>
+                <button class="role-btn" data-role="Mage">
+                    <i class="fas fa-magic"></i>
+                    <span>Mage</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero Display -->
+        <div class="hero-section">
+            <div class="hero-card">
+                <div class="hero-image-container">
+                    <img id="hero-img" src="" alt="Hero" class="hero-image">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="hero-info">
+                    <h2 id="hero-name" class="hero-name">Pilih Role & Spin Hero!</h2>
+                    <p id="hero-role" class="hero-role"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div id="loading-section" class="loading-section">
+            <div class="spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <p class="loading-text">
+                <i class="fas fa-dice"></i>
+                Mencari hero...
+            </p>
+        </div>
+
+        <!-- Spin Button -->
+        <div class="action-section">
+            <button id="spin-btn" class="spin-button">
+                <i class="fas fa-sync-alt"></i>
+                <span>SPIN HERO</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-section">
+            <div class="stat-item">
+                <span class="stat-number" id="total-heroes">0</span>
+                <span class="stat-label">Total Heroes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="available-heroes">0</span>
+                <span class="stat-label">Available</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="spin-count">0</span>
+                <span class="stat-label">Spins</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

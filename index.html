@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MLBB Hero Randomizer Pro - Aplikasi untuk memilih hero Mobile Legends secara acak berdasarkan role">
+    <meta name="keywords" content="MLBB, Mobile Legends, Hero Randomizer, Random Hero, Gaming Tool">
+    <meta name="author" content="MLBB Hero Randomizer Pro">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MLBB Hero Randomizer Pro">
+    <meta property="og:description" content="Temukan hero favoritmu secara acak! Aplikasi professional untuk memilih hero Mobile Legends berdasarkan role.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./preview-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    
     <title>MLBB Hero Randomizer Pro</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -18,107 +33,108 @@
         <div class="particle"></div>
     </div>
 
-    <div class="container">
+    <main class="container">
         <!-- Header -->
-        <div class="header">
+        <header class="header">
             <h1 class="title">
-                <i class="fas fa-dice"></i>
+                <i class="fas fa-dice" aria-hidden="true"></i>
                 MLBB Hero Randomizer
                 <span class="pro-badge">PRO</span>
             </h1>
             <p class="subtitle">Temukan hero favoritmu secara acak!</p>
-        </div>
+        </header>
 
         <!-- Role Selection -->
-        <div class="role-section">
-            <h3 class="section-title">
-                <i class="fas fa-users"></i>
+        <section class="role-section">
+            <h2 class="section-title">
+                <i class="fas fa-users" aria-hidden="true"></i>
                 Pilih Role
-            </h3>
-            <div class="role-buttons">
-                <button class="role-btn active" data-role="All">
-                    <i class="fas fa-globe"></i>
+            </h2>
+            <div class="role-buttons" role="tablist" aria-label="Pilihan Role Hero">
+                <button class="role-btn active" data-role="All" role="tab" aria-selected="true" aria-controls="hero-display">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
                     <span>Semua</span>
                 </button>
-                <button class="role-btn" data-role="Fighter">
-                    <i class="fas fa-fist-raised"></i>
+                <button class="role-btn" data-role="Fighter" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-fist-raised" aria-hidden="true"></i>
                     <span>Fighter</span>
                 </button>
-                <button class="role-btn" data-role="Marksman">
-                    <i class="fas fa-crosshairs"></i>
+                <button class="role-btn" data-role="Marksman" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-crosshairs" aria-hidden="true"></i>
                     <span>Marksman</span>
                 </button>
-                <button class="role-btn" data-role="Tank">
-                    <i class="fas fa-shield-alt"></i>
+                <button class="role-btn" data-role="Tank" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
                     <span>Tank</span>
                 </button>
-                <button class="role-btn" data-role="Support">
-                    <i class="fas fa-heart"></i>
+                <button class="role-btn" data-role="Support" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
                     <span>Support</span>
                 </button>
-                <button class="role-btn" data-role="Assassin">
-                    <i class="fas fa-user-ninja"></i>
+                <button class="role-btn" data-role="Assassin" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-user-ninja" aria-hidden="true"></i>
                     <span>Assassin</span>
                 </button>
-                <button class="role-btn" data-role="Mage">
-                    <i class="fas fa-magic"></i>
+                <button class="role-btn" data-role="Mage" role="tab" aria-selected="false" aria-controls="hero-display">
+                    <i class="fas fa-magic" aria-hidden="true"></i>
                     <span>Mage</span>
                 </button>
             </div>
-        </div>
+        </section>
 
         <!-- Hero Display -->
-        <div class="hero-section">
+        <section class="hero-section" id="hero-display" role="tabpanel" aria-live="polite">
             <div class="hero-card">
                 <div class="hero-image-container">
-                    <img id="hero-img" src="" alt="Hero" class="hero-image">
-                    <div class="image-overlay"></div>
+                    <img id="hero-img" src="" alt="Hero Image" class="hero-image" loading="lazy">
+                    <div class="image-overlay" aria-hidden="true"></div>
                 </div>
                 <div class="hero-info">
                     <h2 id="hero-name" class="hero-name">Pilih Role & Spin Hero!</h2>
                     <p id="hero-role" class="hero-role"></p>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Loading Animation -->
-        <div id="loading-section" class="loading-section">
-            <div class="spinner">
+        <section id="loading-section" class="loading-section" aria-live="assertive" aria-label="Sedang memproses">
+            <div class="spinner" role="status" aria-label="Loading">
                 <div class="spinner-ring"></div>
                 <div class="spinner-ring"></div>
                 <div class="spinner-ring"></div>
             </div>
             <p class="loading-text">
-                <i class="fas fa-dice"></i>
+                <i class="fas fa-dice" aria-hidden="true"></i>
                 Mencari hero...
             </p>
-        </div>
+        </section>
 
         <!-- Spin Button -->
-        <div class="action-section">
-            <button id="spin-btn" class="spin-button">
-                <i class="fas fa-sync-alt"></i>
+        <section class="action-section">
+            <button id="spin-btn" class="spin-button" type="button" aria-describedby="keyboard-hint">
+                <i class="fas fa-sync-alt" aria-hidden="true"></i>
                 <span>SPIN HERO</span>
-                <div class="button-glow"></div>
+                <div class="button-glow" aria-hidden="true"></div>
             </button>
-        </div>
+            <p id="keyboard-hint" class="sr-only">Tekan tombol SPACE untuk spin cepat</p>
+        </section>
 
         <!-- Statistics -->
-        <div class="stats-section">
+        <section class="stats-section" aria-label="Statistik">
             <div class="stat-item">
-                <span class="stat-number" id="total-heroes">0</span>
+                <span class="stat-number" id="total-heroes" aria-label="Total hero">0</span>
                 <span class="stat-label">Total Heroes</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="available-heroes">0</span>
+                <span class="stat-number" id="available-heroes" aria-label="Hero tersedia">0</span>
                 <span class="stat-label">Available</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="spin-count">0</span>
+                <span class="stat-number" id="spin-count" aria-label="Jumlah spin">0</span>
                 <span class="stat-label">Spins</span>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

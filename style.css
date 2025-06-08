@@ -276,10 +276,13 @@ body {
     border: 4px solid transparent;
     background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
     background-clip: padding-box;
-    transition: all 0.4s ease, filter 0.1s ease;
+    transition: all 0.4s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     display: block;
     margin: 0 auto;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .hero-image.show {
@@ -497,7 +500,7 @@ body {
     font-weight: 500;
 }
 
-/* Responsive Design */
+/* Mobile Optimizations */
 @media (max-width: 768px) {
     .container {
         padding: 30px 20px;
@@ -517,6 +520,9 @@ body {
     .hero-image {
         width: 160px;
         height: 160px;
+        /* Force hardware acceleration on mobile */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
     
     .hero-name {
@@ -526,6 +532,17 @@ body {
     .stats-section {
         flex-direction: column;
         gap: 15px;
+    }
+    
+    /* Reduce animations on mobile for better performance */
+    .particle {
+        animation-duration: 8s;
+    }
+    
+    /* Optimize transitions for mobile */
+    .hero-image, .hero-name, .hero-role {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 }
 

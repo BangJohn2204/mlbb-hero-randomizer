@@ -6,6 +6,7 @@ class HeroRandomizer {
         this.currentRole = "All";
         this.spinCount = 0;
         this.isSpinning = false;
+        this.isMobile = this.detectMobile();
         
         // DOM Elements
         this.heroImg = document.getElementById("hero-img");
@@ -21,6 +22,11 @@ class HeroRandomizer {
         this.spinCountEl = document.getElementById("spin-count");
         
         this.init();
+    }
+    
+    detectMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               window.innerWidth <= 768;
     }
     
     async init() {
@@ -191,7 +197,7 @@ class HeroRandomizer {
         this.spinCount++;
         this.updateStatistics();
         
-        // Hide current hero
+        // Hide current hero with fade effect
         this.heroImg.classList.remove("show");
         this.heroName.classList.remove("show");
         this.heroRole.classList.remove("show");
@@ -210,10 +216,17 @@ class HeroRandomizer {
         
         // Spin animation duration - 9 seconds to match the sound
         const spinDuration = 9000; // 9 seconds
-        const spinInterval = 120; // Change hero every 120ms for smoother effect
+        const spinInterval = this.isMobile ? 300 : 200; // Slower on mobile for better performance
         
         let spinTimer;
         let currentSpinTime = 0;
+        let lastHeroIndex = -1; // Track last hero to ensure variation
+        
+        // Force show initial spinning state
+        setTimeout(() => {
+            const initialHero = this.getRandomHero();
+            this.updateHeroDisplay(initialHero);
+        }, 50);
         
         // Rapid hero changes during spin
         spinTimer = setInterval(() => {
@@ -223,18 +236,66 @@ class HeroRandomizer {
                 clearInterval(spinTimer);
                 this.finishSpin();
             } else {
-                // Show random hero during spin (just for effect)
-                const tempHero = this.getRandomHero();
-                this.heroImg.src = tempHero.img;
-                this.heroName.textContent = tempHero.name;
-                this.heroRole.textContent = `Role: ${tempHero.role.join(", ")}`;
+                // Get a different hero than the last one
+                let randomHero;
+                let attempts = 0;
+                do {
+                    randomHero = this.getRandomHero();
+                    attempts++;
+                } while (
+                    this.filteredHeroes.length > 1 && 
+                    this.filteredHeroes.indexOf(randomHero) === lastHeroIndex && 
+                    attempts < 5
+                );
                 
-                // Add blur effect during rapid spinning
-                const progress = currentSpinTime / spinDuration;
-                const blurAmount = Math.sin(progress * Math.PI) * 3; // Max blur 3px in the middle
-                this.heroImg.style.filter = `blur(${blurAmount}px)`;
+                lastHeroIndex = this.filteredHeroes.indexOf(randomHero);
+                this.updateHeroDisplay(randomHero);
+                
+                // Add spinning effect without blur - reduced on mobile
+                if (this.isMobile) {
+                    this.heroImg.style.transform = `scale(${0.95 + Math.random() * 0.1})`;
+                } else {
+                    this.heroImg.style.transform = `scale(${0.9 + Math.random() * 0.2}) rotate(${Math.random() * 10 - 5}deg)`;
+                }
+                
+                // Reset transform after short time
+                setTimeout(() => {
+                    if (this.isSpinning) {
+                        this.heroImg.style.transform = "";
+                    }
+                }, spinInterval / 2);
             }
         }, spinInterval);
+    }
+    
+    // Helper method to update hero display during spinning
+    updateHeroDisplay(hero) {
+        if (!hero) return;
+        
+        // Force immediate update without transitions
+        this.heroImg.style.transition = "none";
+        this.heroName.style.transition = "none";
+        this.heroRole.style.transition = "none";
+        
+        // Update content
+        this.heroImg.src = hero.img;
+        this.heroImg.alt = hero.name;
+        this.heroName.textContent = hero.name;
+        this.heroRole.textContent = `Role: ${hero.role.join(", ")}`;
+        
+        // Force browser reflow to ensure immediate update
+        this.heroImg.offsetHeight;
+        this.heroName.offsetHeight;
+        this.heroRole.offsetHeight;
+        
+        // Restore transitions after a brief moment
+        setTimeout(() => {
+            if (this.isSpinning) {
+                this.heroImg.style.transition = "";
+                this.heroName.style.transition = "";
+                this.heroRole.style.transition = "";
+            }
+        }, 50);
     }
     
     finishSpin() {
@@ -250,8 +311,11 @@ class HeroRandomizer {
         const buttonIcon = this.spinBtn.querySelector("i");
         buttonIcon.style.animation = "";
         
-        // Remove blur effect
-        this.heroImg.style.filter = "";
+        // Reset hero image transform and restore transitions
+        this.heroImg.style.transform = "";
+        this.heroImg.style.transition = "all 0.4s ease, filter 0.1s ease";
+        this.heroName.style.transition = "all 0.4s ease";
+        this.heroRole.style.transition = "all 0.4s ease 0.1s";
         
         // Show final hero with animation
         const finalHero = this.getRandomHero();
